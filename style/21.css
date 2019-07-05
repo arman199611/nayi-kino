@@ -1,0 +1,181 @@
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+
+}
+
+
+
+
+
+input[type='text']:focus{
+	background-color:lime;
+}
+
+
+
+input[type='text']:active{
+	background-color:red;
+}
+
+
+
+input[type='text']:focus~i{
+	color:yellow;
+}
+
+
+input[type='text']:active~i{
+	color:red;
+}
+
+
+
+
+input[type='email']:valid{
+	
+	background-color:green;
+	
+}
+
+
+
+input[type='email']:invalid{
+	
+	background-color:blue;
+}
+
+
+
+
+input[type='email']:valid~i{
+	color:blue;
+}
+
+
+input[type='email']:invalid~i{
+	color:red;
+}
+
+img[title='kku']
+
+
+
+
+
+
+
+
+.mec{
+	float:left;
+	clear:both;
+	width:100%;
+}
+
+
+
+.qar{
+	background-color:black;
+	width:200px;
+	height:200px;
+	position:absolute;
+	animation:anim1 4s infinite linear;
+}
+
+
+@keyframes anim1{
+	
+	0%{left:0;top:0;
+	background-color:black;
+	border-radius:0%; 
+	transform:rotate(0deg);
+	}
+	
+	25%{left:89%;top:0;
+	background-color:lime;
+	border-radius:50%;
+	}
+	
+	50%{left:89%;top:720px;
+	background-color:blue;
+	border-radius:0%;
+	}
+	
+	75%{left:0%;top:720px;
+	background-color:purple;
+	border-radius:50%;
+	}
+	
+	100%{left:0%;top:0;
+	background-color:yellow;
+	border-radius:0%;
+	transform:rotate(360deg);
+	}
+}
+
+
+
+
+/* @keyframes anim1{ */
+	/* 0%{left:0;top:0} */
+	/* 50%{left:60%;top:0} */
+	/* 75%{left:60%;top:150px} */
+	/* 100%{left:0%;top:0px} */
+/* } */
+
+
+
+
+
+
+
+.mec1{
+	float:left;
+	clear:both;
+	width:100%;
+}
+
+
+
+
+.po60{
+	background-color:blue;
+	width:10%;
+	height:200px;
+	left:45%;
+	top:30%;
+	position:absolute;
+	animation:anim2 4s infinite linear;
+}
+
+
+
+
+@keyframes anim2{
+	0%{transform:rotate(0deg)} 
+	100%{transform:rotate(360deg)} 
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
