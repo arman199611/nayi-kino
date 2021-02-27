@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% set pathid = app.request.get('_route_params')['id'] %}
+    <section class="oreteam-view-section  mt-15 pb-5 section">
+        <div class="container-fluid pl-5 pr-5 pt-3  pb-5">
+            <div class="row">
+                <div class="col-12 mt-4 text-center">
+                    <h2>{{ pageTeam.pageTitle }}</h2>
+                    <p>{{ pageTeam.pageShortText }}</p>
+                </div>
+                <div class="container-fluid bg-light pt-5">
+                    <div class="row">
+                        <div class="col-lg-12  p-5">
+                            <div class="float-left col-lg-3  offset-lg-0 mb-lg-3 mr-lg-3 ">
+                                <img src="{{ asset(team.img) }}" class="w-100">
+                            </div>
+                            <div class="col-lg-9 offset-lg-3">
+                                <h4 class="pt-4">{{ team.title }}</h4>
+                                <h5 class="pt-2">
+                                    {{ 'Profession' | trans }} : {{ team.text }}
+                                </h5>
+                                <h6 class="pt-3">
+                                    {{ 'Position' | trans  }} : {{ team.short }}
+                                </h6>
+                                <h6 class="end pt-1">
+                                    {{ team.date |date("m/d/Y") }}
+                                </h6>
+                            </div>
+                            <p class="p-lg-2 p-3">{{ team.bigtext }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

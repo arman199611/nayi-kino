@@ -1,0 +1,24 @@
+<div class="container-fluid pt-3 pl-5 pr-5 pb-3 ">
+    <div class="row">
+        <div class="col-lg-3 offset-lg-1 col-md-5 col-8 offset-2 offset-md-3">
+            <img src="{{ asset('img/footer.png') }}" class="pl-5 w-75">
+        </div>
+        <div class="col-lg-3 offset-lg-0 col-md-8  offset-md-3 pl-lg-3 mt-lg-0 mt-3">
+            <h5 class="mb-3">{{ "Information" | trans }}</h5>
+            <p class="mb-1"> > <i class="fa fa-phone pl-2 pr-1" aria-hidden="true"></i> +7 {{ footer[0].tel }} </p>
+            <p class="mb-1"> > <i class="fa fa-envelope pl-2 pr-1" aria-hidden="true"></i> {{ footer[0].mail }}</p>
+            <p class="mb-1"> > <i class="fa fa-map-marker pl-2 pr-1" aria-hidden="true"></i>{{ footer[0].address }}</p>
+        </div>
+        <div class="col-lg-2 offset-lg-0 col-md-8  offset-md-3 pl-lg-3 mt-lg-0 mt-3">
+            <h5 class="mb-3">{{ 'Pages' | trans }}</h5>
+            {% for nav in nav %}
+                <p class="mb-1"> > <a href="{{ path(nav.link) }}">  {{ nav.text }} </a></p>
+            {% endfor %}
+        </div>
+        <div class="col-lg-2 offset-lg-0 col-md-8  offset-md-3 pl-lg-3 mt-lg-0 mt-3">
+            <h5 class="mb-3">{{ "Social" | trans }}</h5>
+            <p class="mb-1"> > <i class="fa fa-facebook-official pl-2 pr-2" aria-hidden="true"></i><a href="#"> Facebook </a></p>
+        </div>
+    </div>
+</div>
+

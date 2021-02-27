@@ -1,0 +1,18 @@
+php_value display_errors On
+php_value mbstring.http_input auto
+php_value date.timezone Europe/Moscow
+DirectoryIndex /web/app.php
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.+) $1 [L]
+RewriteCond %{DOCUMENT_ROOT}/web%{REQUEST_URI} -f
+RewriteRule ^(.+) /web/$1 [L]
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L]
+Options +SymLinksIfOwnerMatch
+RewriteRule ^(.*)$ /web/ [QSA,L]
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php56” package as the default “PHP” programming language.
+# php -- END cPanel-generated handler, do not edit

@@ -1,0 +1,42 @@
+{% extends ('base.html.twig') %}
+
+{% block body %}
+
+    <section class="news-section news-page mt-15 pb-5 section">
+
+        <div class="news container-fluid pl-5 pr-5 pt-3  pb-5">
+
+            <div class="row">
+
+                <div class="col-12 text-center mb-5">
+                    <h2>{{ pageNews.pageTitle }}</h2>
+                    <p>{{ pageNews.pageShortText }}</p>
+                </div>
+                {% for news in news  %}
+                    <div class="container-fluid {% if loop.index > 1 %}mt-5{% endif %}">
+                        <div class="row">
+
+                            <div class="col-lg-4 p-3"><img src="{{ asset(news.img) }}" class="w-100"></div>
+
+                            <div class="col-lg-8 pt-4 pl-4 pr-4">
+
+                                <h4 class="pt-1"> {{ news.title }} </h4>
+
+                                <p class="pt-3">{{ news.text|length > 650 ? news.text|slice(0, 650) ~ '...' : news.text }}</p>
+
+                                <button class="mt-2 mb-3 btn btn-primary">
+
+                                    <a class="pages" href="{{ path('news-view',{'id':news.id} ) }}">{{ news.btn }}</a>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

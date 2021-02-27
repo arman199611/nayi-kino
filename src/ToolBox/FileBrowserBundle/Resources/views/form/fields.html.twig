@@ -1,0 +1,63 @@
+{% block file_browser_widget %}
+    {{ form_label(form) }}
+    {% spaceless %}
+        {#{% block form_row %}#}
+            {#{% if form.vars.help ?? false %}#}
+                {#<div class="form--help">{{ form.vars.help }}</div>#}
+            {#{% endif %}#}
+        {#{% endblock form_row %}#}
+        {% set data_id = 'now'| date('hism') %}
+        {% set type = type|default('hidden') %}
+        {% set attr = {'class': 'filebrowser ' ~ data_id} %}
+        {% if form.vars.options.multiple is defined and form.vars.options.multiple == false %}
+            {% set attr = {'class': 'filebrowser single-select ' ~data_id} %}
+        {% endif %}
+
+        <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}"{% endif %}/>
+
+        {% if value is not empty %}
+            <h4>Selected File(s)</h4>
+            <hr>
+            <div>
+                {% if form.vars.options.multiple is defined and form.vars.options.multiple == false %}
+                    {% if value | file_exists %}
+                        <div class="image-content">
+                            {% if value != value | get_mim_Type %}
+                                <img src="{{ asset('bundles/toolboxfilebrowser/img/icons/')~value | get_mim_Type }}" >
+                                <span onclick="emptyImgValue(this)" data-id="{{ data_id }}" class="delete-image" data-toggle="tooltip" data-placement="top" title="Remove File">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                                </span>
+                            {% else %}
+                            <img src="{{ asset(value|get_thumb(form.vars.options.no_image_file)) }}" width="150">
+                            <span onclick="emptyImgValue(this)" data-id="{{ data_id }}" class="delete-image" data-toggle="tooltip" data-placement="top" title="Remove File">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </span>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% else %}
+                    {% set valueArray = value|json_decode %}
+                    {% for value in valueArray %}
+                        {% if value|file_exists %}
+                            <div class="multiple-image-content">
+                                {% if value != value | get_mim_Type %}
+                                    <img src="{{ asset('bundles/toolboxfilebrowser/img/icons/')~value | get_mim_Type }}" >
+                                    <span onclick="emptyImg(this)" data-name="{{ asset(value)}}" data-id="{{ data_id }}" class="delete-image" data-toggle="tooltip" data-placement="top" title="Remove File">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </span>
+                                {% else %}
+                                    <img src="{{ asset(value|get_thumb(form.vars.options.no_image_file)) }}" width="150">
+                                    <span onclick="emptyImg(this)" data-name="{{ asset(value)}}" data-id="{{ data_id }}" class="delete-image" data-toggle="tooltip" data-placement="top" title="Remove File">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </span>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <hr>
+        {% endif %}
+
+    {% endspaceless %}
+{% endblock %}

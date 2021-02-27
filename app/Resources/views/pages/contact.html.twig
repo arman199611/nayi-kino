@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="contact contact-pag  container-fluid pt-5 pb-15 p-3">
+        <div class="layer"></div>
+        <div class="row">
+{#            {% for cont in cont %}#}
+
+                <div class="col-12 text-center mt-15 mb-5">
+                    <h2>{{ pageCont.pageTitle }}</h2>
+                    <p>{{ pageCont.pageShortText }}</p>
+                </div>
+
+                <div class="col-12">
+                    <div id="map"></div>
+                </div>
+
+{#                <div class="col-lg-5 offset-lg-0 ml-lg-4 mt-lg-0 col-md-10 offset-md-1  mt-md-5 mt-5">#}
+
+{#                    <form action="{{ path('message') }}">#}
+{#                        <div class="form-row">#}
+{#                            <div class="form-group col-6">#}
+{#                                <label for="inputEmail">{{ cont.input }}</label>#}
+{#                                <input type="email" class="form-control" id="inputEmail" name="email" placeholder="{{ cont.input }}">#}
+{#                            </div>#}
+{#                            <div class="form-group col-6">#}
+{#                                <label for="inputName">{{ cont.input2 }}</label>#}
+{#                                <input type="text" class="form-control" id="inputName" name="name" placeholder="{{ cont.input2 }}">#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="form-group">#}
+{#                            <label for="inputAddress">{{ cont.input3 }}</label>#}
+{#                            <input type="text" class="form-control" id="inputAddress" name="address" placeholder="{{ cont.input3 }}">#}
+{#                        </div>#}
+{#                        <div class="form-row">#}
+{#                            <div class="form-group col-6">#}
+{#                                <label for="inputCity">{{ cont.input4 }}</label>#}
+{#                                <input type="text" class="form-control" id="inputCity" name="city" placeholder="{{ cont.input4 }}">#}
+{#                            </div>#}
+{#                            <div class="form-group col-6">#}
+{#                                <label for="inputState">{{ cont.input5 }}</label>#}
+{#                                <input type="text" class="form-control" id="inputState" name="state" placeholder="{{ cont.input5 }}">#}
+{#                            </div>#}
+{#                            <div class="form-group col-12">#}
+{#                                <label for="inputMessage">{{ cont.messege }}</label>#}
+{#                                <textarea type="text" class="form-control" id="inputMessage" name="message" rows="5"#}
+{#                                          placeholder="{{ cont.messege }}"></textarea>#}
+{#                            </div>#}
+
+{#                        </div>#}
+
+{#                        <button class="btn  offset-5 btn-primary">{{ cont.btn }}</button>#}
+{#                        {% if app.session is not null and app.session.started %}#}
+{#                            {% for label, messages in app.session.flashbag.all %}#}
+{#                                {% for message in messages %}#}
+{#                                    <h4 class="flash-message flash-{{ label }}">{{ message }}</h4>#}
+{#                                {% endfor %}#}
+{#                            {% endfor %}#}
+{#                        {% endif %}#}
+
+{#                    </form>#}
+
+{#                </div>#}
+
+{#            {% endfor %}#}
+        </div>
+
+    </div>
+
+    <section class="footer-section section">
+        {{ render(controller('AppBundle:Default:footer')) }}
+    </section>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD74VFI8DTOeAaUT3xTSmfuY_XOJ0Hoozg&callback=initMap"
+            async defer></script>
+{% endblock javascripts %}

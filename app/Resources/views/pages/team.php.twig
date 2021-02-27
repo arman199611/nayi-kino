@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="ore-team-page section">
+        <div class="container mt-15">
+            <div class="row">
+                <div class="col-12 mt-4 text-center">
+                    <h2>{{ pageTeam.pageTitle }}</h2>
+                    <p>{{ pageTeam.pageShortText }}</p>
+                </div>
+                <div class="all-wrap">
+                    {% for team in team %}
+                        <div class="col-lg-4 p-5 col-md-6  col-12 text-center">
+                            <div class="cc m-1 p-4">
+                                <img src="{{ asset(team.img) }}" class="w-100 mb-3" >
+                                <div class="col-10 m-auto">
+                                    <h4 class="pt-4 pb-1">{{ team.title }}</h4>
+                                    <h5 class="pt-2">{{ team.text }}</h5>
+                                    <p class="pt-2">{{ team.short }}</p>
+                                </div>
+                                <div class="col-lg-10 offset-lg-1 mt-2 ">
+                                    <button class="btn btn-primary"><a href="{{ path('ourteam-view',{'id':team.id} ) }}">{{ team.btn }}</a></button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
