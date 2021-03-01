@@ -1,3 +1,0 @@
-    <a href="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params') | merge ({'_locale':'am'}))}}">Am</a>
-    <a href="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params') | merge ({'_locale':'ru'}))}}">Ru</a>
-    <a href="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params') | merge ({'_locale':'en'}))}}">En</a>
