@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bf2a1de-4151-4dec-90cb-bb4e90bf7c51" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="1bf2a1de-4151-4dec-90cb-bb4e90bf7c51" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,38 +21,38 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "history": [
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
     {
-      "assignee": "arman199611"
+      &quot;assignee&quot;: &quot;arman199611&quot;
     }
   ],
-  "lastFilter": {}
-}]]></component>
-  <component name="GitHubPullRequestState"><![CDATA[{
-  "prStates": [
+  &quot;lastFilter&quot;: {}
+}</component>
+  <component name="GitHubPullRequestState">{
+  &quot;prStates&quot;: [
     {
-      "id": {
-        "id": "PR_kwDOOcK3Kc6TMc4V",
-        "number": 1
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOOcK3Kc6TMc4V&quot;,
+        &quot;number&quot;: 1
       },
-      "lastSeen": 1745057110850
+      &quot;lastSeen&quot;: 1745057110850
     },
     {
-      "id": {
-        "id": "PR_kwDOOcK3Kc6TMdRB",
-        "number": 2
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOOcK3Kc6TMdRB&quot;,
+        &quot;number&quot;: 2
       },
-      "lastSeen": 1745057340622
+      &quot;lastSeen&quot;: 1745057340622
     }
   ]
-}]]></component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/arman199611/nayi-kino.io&quot;,
-    &quot;accountId&quot;: &quot;1ee445b7-255f-4ae0-afef-ad44c58b82e1&quot;
-  }
 }</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/arman199611/nayi-kino",
+    "accountId": "1ee445b7-255f-4ae0-afef-ad44c58b82e1"
+  }
+}]]></component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\php-8.1.32\php.exe" />
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -81,6 +79,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Downloads\Project\Poject" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -99,6 +102,7 @@
       <updated>1745055157767</updated>
       <workItem from="1745055159209" duration="894000" />
       <workItem from="1745057064229" duration="973000" />
+      <workItem from="1745058051589" duration="524000" />
     </task>
     <servers />
   </component>
