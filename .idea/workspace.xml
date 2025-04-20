@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1bf2a1de-4151-4dec-90cb-bb4e90bf7c51" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
@@ -257,6 +256,7 @@
       <workItem from="1745093599462" duration="159000" />
       <workItem from="1745141511283" duration="3416000" />
       <workItem from="1745145033422" duration="4945000" />
+      <workItem from="1745150191568" duration="819000" />
     </task>
     <servers />
   </component>

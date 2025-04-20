@@ -32,13 +32,13 @@ class DefaultController extends AbstractController
 
     {
 
-
         $em = $this->getDoctrine()->getManager();
         $navs = $em->getRepository(Navbar::class)->findAll();
         $page = 1;
         $link = file_get_contents('https://kp.kinobox.tv/films/popular?films=true&released=true&page=' . $page);
         $data = json_decode($link);
         $films = $data->data->films;
+//        $watch = file_get_contents('https://pandahd.lat/film/838574/');
 
         return $this->render('base.html.twig', [
             'navs' => $navs,
@@ -61,7 +61,6 @@ class DefaultController extends AbstractController
     public function page(Request $request,$page)
 
     {
-
 
         $em = $this->getDoctrine()->getManager();
         $navs = $em->getRepository(Navbar::class)->findAll();
@@ -91,7 +90,6 @@ class DefaultController extends AbstractController
 
     {
 
-
         $em = $this->getDoctrine()->getManager();
         $navs = $em->getRepository(Navbar::class)->findAll();
         $page = 1;
@@ -120,7 +118,6 @@ class DefaultController extends AbstractController
     public function serialpage(Request $request,$page)
 
     {
-
 
         $em = $this->getDoctrine()->getManager();
         $navs = $em->getRepository(Navbar::class)->findAll();
