@@ -1,4 +1,3 @@
-$('#prev').addClass('d-none')
 let link = 'https://kp.kinobox.tv/films/popular?films=true&released=true&page=';
 let link1 = 'https://kp.kinobox.tv/films/popular?series=true&released=true&page=';
 let page = $('#next').attr('val');
@@ -10,31 +9,38 @@ popfilm.then(data => {
     let films = data.data.films
     for (let i = 0; i < films.length; i++) {
         $('#cn' + films[i]['id']).click(function () {
-                $('.films').addClass('d-none');
-                $('.pages').addClass('d-none');
-                $('.player').removeClass('d-none');
-                $('.watch').attr("src", 'https://pandahd.lat/film/' + films[i]['id'] + '/');
-                $('.watch').attr("id", 'wch' + films[i]['id']);
+            $('.films').addClass('d-none');
+            $('.pages').addClass('d-none');
+            $('.player').removeClass('d-none');
+            kbox('.kinobox_player', {
+                search: {
+                    kinopoisk: films[i]['id'],
+                    title: films[i]['title']['russian']
+                }
+            });
         });
 
-    };
+    }
 });
+
 
 popser = fetch(link1 + page)
     .then(response => response.json());
 popser.then(data => {
     let films = data.data.films
     for (let i = 0; i < films.length; i++) {
-        if (films[i]['posterUrl']) {
-            $('#cn' + films[i]['id']).click(function () {
-                $('.films').addClass('d-none');
-                $('.pages').addClass('d-none');
-                $('.player').removeClass('d-none');
-                $('.watch').attr("src", 'https://pandahd.lat/film/' + films[i]['id'] + '/');
-                $('.watch').attr("id", 'wch' + films[i]['id']);
+        $('#cn' + films[i]['id']).click(function () {
+            $('.films').addClass('d-none');
+            $('.pages').addClass('d-none');
+            $('.player').removeClass('d-none');
+            kbox('.kinobox_player', {
+                search: {
+                    kinopoisk: films[i]['id'],
+                    title: films[i]['title']['russian']
+                }
             });
-        }
-    };
+        });
+    }
 });
 
 
@@ -61,10 +67,14 @@ $('#word').on('input', function () {
                 $('.films').addClass('d-none');
                 $('.pages').addClass('d-none');
                 $('.player').removeClass('d-none');
-                $('.watch').attr("src", 'https://pandahd.lat/film/' + films[i]['id'] + '/');
-                $('.watch').attr("id", 'wch' + films[i]['id']);
+                kbox('.kinobox_player', {
+                    search: {
+                        kinopoisk: films[i]['id'],
+                        title: films[i]['title']['russian']
+                    }
+                });
             });
-        };
+        }
     });
 });
 

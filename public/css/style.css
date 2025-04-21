@@ -3,6 +3,10 @@ body{
    background-color:  #333333;
 }
 
+.navbar{
+    flex-wrap: inherit;
+}
+
 .navbar-toggler{
     padding: 5px;
     font-size: 15px;
@@ -25,24 +29,24 @@ body{
     color: gray !important;
 }
 
-.player{
-    position: relative;
-    width: auto;
-    height: 520px;
-    overflow: hidden;
-    z-index: 0;
-}
+/*.player{*/
+/*    position: relative;*/
+/*    width: auto;*/
+/*    height: 520px;*/
+/*    overflow: hidden;*/
+/*    z-index: 0;*/
+/*}*/
 
-.watch{
-    width: 100%;
-    border: none;
-    position: absolute;
-    top: -69%;
-    height: 950px;
-    display: block; 
-    overflow-y: auto; 
-    overflow-x: hidden;
-} 
+/*.watch{*/
+/*    width: 100%;*/
+/*    border: none;*/
+/*    position: absolute;*/
+/*    top: -69%;*/
+/*    height: 950px;*/
+/*    display: block; */
+/*    overflow-y: auto; */
+/*    overflow-x: hidden;*/
+/*} */
 
 .card{
     cursor: pointer;
