@@ -51,6 +51,7 @@ body{
 .card{
     cursor: pointer;
     color: white;
+    min-height: 411px;
 }
 
 .card:hover{
