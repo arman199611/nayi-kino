@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="9894ace0-1e46-4207-be31-fe281734931c" name="nayi-kino.rf.gd" url="http://nayi-kino.rf.gd">
-        <fileTransfer rootFolder="/nayi-kino.rf.gd/htdocs" host="ftpupload.net" port="21">
+      <webServer id="9894ace0-1e46-4207-be31-fe281734931c" name="nayi-kino.rf.gd" url="http://nayi-film.rf.gd">
+        <fileTransfer rootFolder="/htdocs" host="ftpupload.net" port="21">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
