@@ -40,7 +40,7 @@ body {
   cursor: pointer;
   color: white;
   mia-height: 411px;
-  :hover {
+  &:hover {
     background-color: #007fffd9 !important;
   }
 }
