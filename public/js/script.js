@@ -57,10 +57,10 @@ $('#word').on('input', function () {
         let films = data.data.items
         for (let i = 0; i < films.length; i++) {
             if (films[i]['type'] == 'Film') {
-                let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top pt-4  bg-dark' src='https:" + films[i]['gallery']['posterUrl'] + "/1920x'><div class='card-body  bg-dark'>Фильм<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['title']['russian'] + "</h5></div></div></div>";
+                let html = "<div class='col-md-2 col-4 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top bg-dark' src='https:" + films[i]['gallery']['posterUrl'] + "/1920x'><div class='card-body  bg-dark'>Фильм<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['title']['russian'] + "</h5></div></div></div>";
                 $('.films').append(html);
             } else {
-                let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top pt-4  bg-dark' src='https:" + films[i]['gallery']['posterUrl'] + "/1920x'><div class='card-body  bg-dark'>Сериал<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['title']['russian'] + "</h5></div></div></div>";
+                let html = "<div class='col-md-2 col-4 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top bg-dark' src='https:" + films[i]['gallery']['posterUrl'] + "/1920x'><div class='card-body  bg-dark'>Сериал<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['title']['russian'] + "</h5></div></div></div>";
                 $('.films').append(html);
             }
             $('#cn' + films[i]['id']).click(function () {

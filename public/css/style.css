@@ -32,7 +32,7 @@ body {
   color: white;
   mia-height: 411px;
 }
-.card :hover {
+.card:hover {
   background-color: #007fffd9 !important;
 }
 
