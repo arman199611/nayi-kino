@@ -1,5 +1,7 @@
-let link = 'https://kp.kinobox.tv/films/popular?films=true&released=true&page=';
-let link1 = 'https://kp.kinobox.tv/films/popular?series=true&released=true&page=';
+// let link = 'https://kp.kinobox.tv/films/popular?films=true&released=true&page=';
+let link = 'https://kp.kinobox.tv/api/v2/films/popular?type=films';
+// let link1 = 'https://kp.kinobox.tv/films/popular?series=true&released=true&page=';
+let link1 = 'https://kp.kinobox.tv/api/v2/films/popular?type=series';
 let ifo = 'https://api.kinopoisk.dev/v1.4/movie/';
 
 
@@ -10,10 +12,10 @@ if (pathName == 'homepage' || pathName == 'page') {
         .then(response => response.json());
 
     popfilm.then(data => {
-        let films = data.data.films
+        let films = data.data.items
         for (let i = 0; i < films.length; i++) {
-            if (films[i]['posterUrl']) {
-                let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i]['posterUrl'] + "'><div class='card-body  bg-dark'>Фильм<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['title']['russian'] + "</h5></div></div></div>";
+            if (films[i].gallery['posterUrl']) {
+                let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].gallery['posterUrl'] + "'><div class='card-body  bg-dark'>Фильм<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['title']['russian'] + "</h5></div></div></div>";
                 $('.films').append(html);
             }
             $('#cn' + films[i]['id']).click(function () {
@@ -62,13 +64,13 @@ if (pathName == 'homepage' || pathName == 'page') {
 
 if (pathName == 'serials' || pathName == 'serialpage') {
 
-    let popser = fetch(link1 + page)
+    let popser = fetch(link1)
         .then(response => response.json());
     popser.then(data => {
-        let films = data.data.films
+        let films = data.data.items
         for (let i = 0; i < films.length; i++) {
-            if (films[i]['posterUrl']) {
-                let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i]['posterUrl'] + "'><div class='card-body  bg-dark'>Сериал<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['title']['russian'] + "</h5></div></div></div>";
+            if (films[i].gallery['posterUrl']) {
+                let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].gallery['posterUrl'] + "'><div class='card-body  bg-dark'>Сериал<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['title']['russian'] + "</h5></div></div></div>";
                 $('.films').append(html);
             }
             $('#cn' + films[i]['id']).click(function () {
@@ -117,31 +119,35 @@ if (pathName == 'serials' || pathName == 'serialpage') {
 
 $('#word').on('input', function () {
     let searchword = encodeURIComponent($('#word').val());
-    let link = "https://kp.kinobox.tv/films/search/?query=" + searchword;
+    let link = "https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=10&query=" + searchword;
     $('.films').empty();
     $('.pages').empty();
     $('.films').removeClass('d-none');
     $('.player').addClass('d-none');
-    let search = fetch(link)
+    const options = {
+        method: 'GET',
+        headers: {accept: 'application/json', 'X-API-KEY': '6M3VFC5-FR34F7A-QW7J0X6-R38720S'}
+    };
+    let search = fetch(link,options)
         .then(response => response.json());
     search.then(data => {
-        let films = data.data.items
+        let films = data.docs
+        console.log(films);
         for (let i = 0; i < films.length; i++) {
-            if (films[i]['type'] == 'Film') {
-                let html = "<div class='col-md-2 col-4 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top bg-dark' src='https:" + films[i]['gallery']['posterUrl'] + "/1920x'><div class='card-body  bg-dark'>Фильм<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['title']['russian'] + "</h5></div></div></div>";
+            if (films[i]['type'] == 'movie') {
+                let html = "<div class='col-md-2 col-4 all mb-4 d-block'><div class='card h-auto bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top h-auto bg-dark' src='" + films[i].backdrop['previewUrl'] + "'><div class='card-body  bg-dark'>Фильм<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['name'] + "</h5></div></div></div>";
                 $('.films').append(html);
             } else {
-                let html = "<div class='col-md-2 col-4 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top bg-dark' src='https:" + films[i]['gallery']['posterUrl'] + "/1920x'><div class='card-body  bg-dark'>Сериал<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['title']['russian'] + "</h5></div></div></div>";
+                let html = "<div class='col-md-2 col-4 all mb-4 d-block'><div class='card h-auto bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top h-auto bg-dark' src='" + films[i].backdrop['previewUrl'] + "'><div class='card-body  bg-dark'>Сериал<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['name'] + "</h5></div></div></div>";
                 $('.films').append(html);
             }
             $('#cn' + films[i]['id']).click(function () {
                 $('.films').addClass('d-none');
                 $('.pages').addClass('d-none');
-                $('.player').removeClass('d-none');
                 kbox('.kinobox_player', {
                     search: {
                         kinopoisk: films[i]['id'],
-                        title: films[i]['title']['russian']
+                        title: films[i]['name']
                     }
                 });
                 const options = {
@@ -173,6 +179,7 @@ $('#word').on('input', function () {
                     $('#desc').append('Описание:<br>');
                     $('#desc').append(data.description);
                 })
+                $('.player').removeClass('d-none');
             });
         }
     });
