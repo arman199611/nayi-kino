@@ -26,6 +26,14 @@ if (pathName == 'homepage' || pathName == 'page') {
                     search: {
                         kinopoisk: films[i]['id'],
                         title: films[i]['title']['russian']
+                    },
+                    events: {
+                        playerLoaded: function (status, sources) {
+                            // code
+                            // status - статус поиска
+                            // sources - массив источников
+                            console.log(sources);
+                        }
                     }
                 });
                 const options = {
@@ -35,7 +43,6 @@ if (pathName == 'homepage' || pathName == 'page') {
                 let filminfo = fetch(ifo+films[i]['id'], options)
                     .then(res => res.json());
                 filminfo.then(data => {
-                    console.log(data);
                     $('#poster').removeAttr("src");
                     $('#name').empty();
                     $('#year').empty();
@@ -90,7 +97,6 @@ if (pathName == 'serials' || pathName == 'serialpage') {
                 let filminfo = fetch(ifo+films[i]['id'], options)
                     .then(res => res.json());
                 filminfo.then(data => {
-                    console.log(data);
                     $('#poster').removeAttr("src");
                     $('#name').empty();
                     $('#year').empty();
@@ -157,7 +163,6 @@ $('#word').on('input', function () {
                 let filminfo = fetch(ifo+films[i]['id'], options)
                     .then(res => res.json());
                 filminfo.then(data => {
-                    console.log(data);
                     $('#poster').removeAttr("src");
                     $('#name').empty();
                     $('#year').empty();

@@ -92,45 +92,45 @@
                 </div>
                 <div class="col-12 mt-4 p-0 kinobox_player"></div>
             </div>
-            <div class="pages col-12 text-center">
-                {% if page == 1 %}
-                    {% if pathName == 'homepage' or pathName == 'page' %}
-                        <div class="btn btn-dark mr-2 disabled"> {{ page }} </div>
-                        <a type="button" class="btn btn-dark" id="next" href="{{ path('page',{'page':page+1} ) }}"
-                           val="{{ page }}">
-                            {{ page+1 }} <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                        </a>
-                    {% else %}
-                        <div class="btn btn-dark mr-2 disabled"> {{ page }} </div>
-                        <a type="button" class="btn btn-dark" id="next" href="{{ path('serialpage',{'page':page+1} ) }}"
-                           val="{{ page }}">
-                            {{ page+1 }} <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                        </a>
-                    {% endif %}
-                {% else %}
-                    {% if pathName == 'homepage' or pathName == 'page' %}
-                        <a type="button" class="btn btn-dark mr-2" id="prev" href="{{ path('page',{'page':page-1} ) }}">
-                            <i class="fa fa-angle-double-left" aria-hidden="true"></i> {{ page-1 }}
-                        </a>
-                        <div class="btn btn-dark mr-2 disabled"> {{ page }} </div>
-                        <a type="button" class="btn btn-dark" id="next" href="{{ path('page',{'page':page+1} ) }}"
-                           val="{{ page }}">
-                            {{ page+1 }} <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                        </a>
-                    {% else %}
-                        <a type="button" class="btn btn-dark mr-2" id="prev"
-                           href="{{ path('serialpage',{'page':page-1} ) }}">
-                            <i class="fa fa-angle-double-left" aria-hidden="true"></i> {{ page-1 }}
-                        </a>
-                        <div class="btn btn-dark mr-2 disabled"> {{ page }} </div>
-                        <a type="button" class="btn btn-dark" id="next" href="{{ path('serialpage',{'page':page+1} ) }}"
-                           val="{{ page }}">
-                            {{ page+1 }} <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                        </a>
-                    {% endif %}
+{#            <div class="pages col-12 text-center">#}
+{#                {% if page == 1 %}#}
+{#                    {% if pathName == 'homepage' or pathName == 'page' %}#}
+{#                        <div class="btn btn-dark mr-2 disabled"> {{ page }} </div>#}
+{#                        <a type="button" class="btn btn-dark" id="next" href="{{ path('page',{'page':page+1} ) }}"#}
+{#                           val="{{ page }}">#}
+{#                            {{ page+1 }} <i class="fa fa-angle-double-right" aria-hidden="true"></i>#}
+{#                        </a>#}
+{#                    {% else %}#}
+{#                        <div class="btn btn-dark mr-2 disabled"> {{ page }} </div>#}
+{#                        <a type="button" class="btn btn-dark" id="next" href="{{ path('serialpage',{'page':page+1} ) }}"#}
+{#                           val="{{ page }}">#}
+{#                            {{ page+1 }} <i class="fa fa-angle-double-right" aria-hidden="true"></i>#}
+{#                        </a>#}
+{#                    {% endif %}#}
+{#                {% else %}#}
+{#                    {% if pathName == 'homepage' or pathName == 'page' %}#}
+{#                        <a type="button" class="btn btn-dark mr-2" id="prev" href="{{ path('page',{'page':page-1} ) }}">#}
+{#                            <i class="fa fa-angle-double-left" aria-hidden="true"></i> {{ page-1 }}#}
+{#                        </a>#}
+{#                        <div class="btn btn-dark mr-2 disabled"> {{ page }} </div>#}
+{#                        <a type="button" class="btn btn-dark" id="next" href="{{ path('page',{'page':page+1} ) }}"#}
+{#                           val="{{ page }}">#}
+{#                            {{ page+1 }} <i class="fa fa-angle-double-right" aria-hidden="true"></i>#}
+{#                        </a>#}
+{#                    {% else %}#}
+{#                        <a type="button" class="btn btn-dark mr-2" id="prev"#}
+{#                           href="{{ path('serialpage',{'page':page-1} ) }}">#}
+{#                            <i class="fa fa-angle-double-left" aria-hidden="true"></i> {{ page-1 }}#}
+{#                        </a>#}
+{#                        <div class="btn btn-dark mr-2 disabled"> {{ page }} </div>#}
+{#                        <a type="button" class="btn btn-dark" id="next" href="{{ path('serialpage',{'page':page+1} ) }}"#}
+{#                           val="{{ page }}">#}
+{#                            {{ page+1 }} <i class="fa fa-angle-double-right" aria-hidden="true"></i>#}
+{#                        </a>#}
+{#                    {% endif %}#}
 
-                {% endif %}
-            </div>
+{#                {% endif %}#}
+{#            </div>#}
         </div>
     </div>
     </div>
