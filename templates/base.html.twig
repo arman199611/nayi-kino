@@ -36,9 +36,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('homepage') }}">{{ item.first }}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('serials') }}" id="serials">{{ item.second }}</a>
-                    </li>
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{{ path('serials') }}" id="serials">{{ item.second }}</a>#}
+{#                    </li>#}
                 </ul>
                 <form class="form-inline">
                     <input class="form-control mr-2" type="search" placeholder="Поиск" aria-label="Search" id="word">
@@ -90,7 +90,8 @@
                     <h5 id="genres"></h5>
                     <h5 id="desc"></h5>
                 </div>
-                <div class="col-12 mt-4 p-0 kinobox_player"></div>
+                <iframe class="col-12 mt-4 p-0" id="watchfilm"  style="height:800px;"></iframe>
+                {#                <div class="col-12 mt-4 p-0 kinobox_player"></div>#}
             </div>
 {#            <div class="pages col-12 text-center">#}
 {#                {% if page == 1 %}#}
