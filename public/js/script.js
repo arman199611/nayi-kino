@@ -1,5 +1,5 @@
 // let link = 'https://kp.kinobox.tv/films/popular?films=true&released=true&page=';
-let link = 'https://api.kinopoisk.dev/v1.4/movie?year=2023&limit=35';
+let link = 'https://api.kinopoisk.dev/v1.4/movie?year=2024&limit=40';
 // let link1 = 'https://kp.kinobox.tv/films/popular?series=true&released=true&page=';
 let link1 = 'https://kp.kinobox.tv/api/v2/films/popular?type=series';
 let watchfilm ='https://flcksbr.top/film/';
@@ -17,6 +17,7 @@ if (pathName == 'homepage' || pathName == 'page') {
         .then(response => response.json());
 
     popfilm.then(data => {
+        console.log(data);
         let films = data.docs
         for (let i = 0; i < films.length; i++) {
             if (films[i].poster) {
@@ -27,7 +28,6 @@ if (pathName == 'homepage' || pathName == 'page') {
                 $('.films').addClass('d-none');
                 $('.pages').addClass('d-none');
                 $('.player').removeClass('d-none');
-                console.log(""+watchfilm+films[i]['id']+'/');
                 $('#watchfilm').attr("src", ""+watchfilm+films[i]['id']+'/');
                 // kbox('.kinobox_player', {
                 //     search: {
@@ -158,12 +158,13 @@ $('#word').on('input', function () {
             $('#cn' + films[i]['id']).click(function () {
                 $('.films').addClass('d-none');
                 $('.pages').addClass('d-none');
-                kbox('.kinobox_player', {
-                    search: {
-                        kinopoisk: films[i]['id'],
-                        title: films[i]['name']
-                    }
-                });
+                $('#watchfilm').attr("src", ""+watchfilm+films[i]['id']+'/');
+                // kbox('.kinobox_player', {
+                //     search: {
+                //         kinopoisk: films[i]['id'],
+                //         title: films[i]['name']
+                //     }
+                // });
                 const options = {
                     method: 'GET',
                     headers: {accept: 'application/json', 'X-API-KEY': '6M3VFC5-FR34F7A-QW7J0X6-R38720S'}
