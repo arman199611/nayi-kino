@@ -123,6 +123,27 @@ class DefaultController extends AbstractController
 
     }
 
+    /**
+     * @Route("/{_locale}/search/{film}", name="search",
+     *    defaults={"_locale":"ru"},
+     *    requirements={"_locale":"en|ru|am"}
+     * )
+     *
+
+     */
+    public function search(Request $request, $film)
+
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $navs = $em->getRepository(Navbar::class)->findAll();
+        return $this->render('base.html.twig', [
+            'navs' => $navs,
+            'film' => $film,
+        ]);
+
+    }
+
 
 }
 
