@@ -29,6 +29,9 @@
 <body>
 {% block body %}
     <span id="pathName" val="{{ pathName }}"></span>
+    {% if pathName == 'homepage' or pathName == 'serials' %}
+        <span id="popfilms" data-settings="{{ filmes|json_encode }}"></span>
+    {% endif %}
     {% if pathName == 'search' %}
         <span id="filmname" class="d-none">{{ film }}</span>
     {% endif %}
@@ -54,33 +57,38 @@
         <div class="row">
             <div class="col-12 m-auto p-lg-4 p-md-3 p-0">
                 <div class="row m-0 films">
-                    {#                    {% for item in films %} #}
-                    {#                        {% if  item.posterUrl %} #}
-                    {#                            <div class='col-md-2 col-4 all mb-4 d-block'> #}
-                    {#                                <div class='card bg-dark' id='cn{{ item.id }}'> #}
-                    {#                                    <img class='card-img-top bg-dark' src='{{ item.posterUrl }}'> #}
-                    {#                                    <div class='card-body  bg-dark'> #}
-                    {#                                        <h5 class='card-title  bg-dark'>{{ item.title.russian }} #}
-                    {#                                            <br> #}
-                    {#                                            <br> #}
-                    {#                                            {% if item.type == 'Series' %} #}
-                    {#                                                Сериал #}
-                    {#                                            {% else %} #}
-                    {#                                                Фильм #}
-                    {#                                            {% endif %} #}
-                    {#                                            {{ item.year }} #}
-                    {#                                            г. #}
-                    {#                                        </h5> #}
-                    {#                                    </div> #}
+                    {#                    {% for item in filmes %} #}
+                    {#                        #}{#                        {% if  item.poster.url%} #}
+                    {#                        <div class='col-md-2 col-4 all mb-4 d-block'> #}
+                    {#                            <div class='card bg-dark' id='cn{{ item.id }}'> #}
+                    {#                                {% for items in item %} #}
+                    {#                                    {% for itemss in items %} #}
+                    {#                                        {{ dump(itemss) }} #}
+                    {#                                    {% endfor %} #}
+                    {#                                {% endfor %} #}
+                    {#                                #}{#                                <img class='card-img-top bg-dark' src='{{ item.poster.url }}'> #}
+                    {#                                <div class='card-body  bg-dark'> #}
+                    {#                                    <h5 class='card-title  bg-dark'>{{ item.name }} #}
+                    {#                                        <br> #}
+                    {#                                        <br> #}
+                    {#                                        {% if item.isSeries == true %} #}
+                    {#                                            Сериал #}
+                    {#                                        {% else %} #}
+                    {#                                            Фильм #}
+                    {#                                        {% endif %} #}
+                    {#                                        {{ item.year }} #}
+                    {#                                        г. #}
+                    {#                                    </h5> #}
                     {#                                </div> #}
                     {#                            </div> #}
-                    {#                        {% endif %} #}
+                    {#                        </div> #}
+                    {#                        #}{#                        {% endif %} #}
                     {#                    {% endfor %} #}
                 </div>
             </div>
         </div>
     </div>
-    <div class="container-fluid mb-5">
+    <div class="container-fluid">
         <div class="row">
             <div class="player d-none col-md-8 col-12 pt-md-2 pt-4 m-auto">
                 <div class="col-lg-4 mb-4 p-0">
@@ -99,57 +107,61 @@
                 </div>
                 {#                <div class="col-12 mt-4 p-0 kinobox_player"></div> #}
             </div>
-            <div class="pages col-12 text-center">
-                {% if page == 1 %}
-                    {% if pathName == 'homepage' or pathName == 'page' %}
-                        <div class="btn btn-dark mr-2 disabled"> {{ page }} </div>
-                        <a type="button" class="btn btn-dark" id="next" href="{{ path('page',{'page':page+1} ) }}"
-                           val="{{ page }}">
-                            {{ page+1 }} <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                        </a>
-                    {% elseif pathName == 'serials' or pathName == 'serialpage'  %}
-                        <div class="btn btn-dark mr-2 disabled"> {{ page }} </div>
-                        <a type="button" class="btn btn-dark" id="next" href="{{ path('serialpage',{'page':page+1} ) }}"
-                           val="{{ page }}">
-                            {{ page+1 }} <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                        </a>
-                    {% endif %}
-                {% else %}
-                    {% if pathName == 'homepage' or pathName == 'page' %}
-                        <a type="button" class="btn btn-dark mr-2" id="prev" href="{{ path('page',{'page':page-1} ) }}">
-                            <i class="fa fa-angle-double-left" aria-hidden="true"></i> {{ page-1 }}
-                        </a>
-                        <div class="btn btn-dark mr-2 disabled"> {{ page }} </div>
-                        <a type="button" class="btn btn-dark" id="next" href="{{ path('page',{'page':page+1} ) }}"
-                           val="{{ page }}">
-                            {{ page+1 }} <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                        </a>
-                    {% elseif pathName == 'serials' or pathName == 'serialpage'%}
-                        <a type="button" class="btn btn-dark mr-2" id="prev"
-                           href="{{ path('serialpage',{'page':page-1} ) }}">
-                            <i class="fa fa-angle-double-left" aria-hidden="true"></i> {{ page-1 }}
-                        </a>
-                        <div class="btn btn-dark mr-2 disabled"> {{ page }} </div>
-                        <a type="button" class="btn btn-dark" id="next" href="{{ path('serialpage',{'page':page+1} ) }}"
-                           val="{{ page }}">
-                            {{ page+1 }} <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                        </a>
-                    {% endif %}
-                {% endif %}
-            </div>
+            {#            <div class="pages d-none col-12 text-center"> #}
+            {#                {% if page = 1 %} #}
+            {#                    {% if pathName == 'homepage' or pathName == 'page' %} #}
+            {#                        <div class="btn btn-dark mr-2 disabled"> {{ page }} </div> #}
+            {#                        <a type="button" class="btn btn-dark" id="next" href="{{ path('page',{'page':page+1} ) }}" #}
+            {#                           val="{{ page }}"> #}
+            {#                            {{ page+1 }} <i class="fa fa-angle-double-right" aria-hidden="true"></i> #}
+            {#                        </a> #}
+            {#                    {% elseif pathName == 'serials' or pathName == 'serialpage'  %} #}
+            {#                        <div class="btn btn-dark mr-2 disabled"> {{ page }} </div> #}
+            {#                        <a type="button" class="btn btn-dark" id="next" href="{{ path('serialpage',{'page':page+1} ) }}" #}
+            {#                           val="{{ page }}"> #}
+            {#                            {{ page+1 }} <i class="fa fa-angle-double-right" aria-hidden="true"></i> #}
+            {#                        </a> #}
+            {#                    {% endif %} #}
+            {#                {% else %} #}
+            {#                    {% if pathName == 'homepage' or pathName == 'page' %} #}
+            {#                        <a type="button" class="btn btn-dark mr-2" id="prev" href="{{ path('page',{'page':page-1} ) }}"> #}
+            {#                            <i class="fa fa-angle-double-left" aria-hidden="true"></i> {{ page-1 }} #}
+            {#                        </a> #}
+            {#                        <div class="btn btn-dark mr-2 disabled"> {{ page }} </div> #}
+            {#                        <a type="button" class="btn btn-dark" id="next" href="{{ path('page',{'page':page+1} ) }}" #}
+            {#                           val="{{ page }}"> #}
+            {#                            {{ page+1 }} <i class="fa fa-angle-double-right" aria-hidden="true"></i> #}
+            {#                        </a> #}
+            {#                    {% elseif pathName == 'serials' or pathName == 'serialpage'%} #}
+            {#                        <a type="button" class="btn btn-dark mr-2" id="prev" #}
+            {#                           href="{{ path('serialpage',{'page':page-1} ) }}"> #}
+            {#                            <i class="fa fa-angle-double-left" aria-hidden="true"></i> {{ page-1 }} #}
+            {#                        </a> #}
+            {#                        <div class="btn btn-dark mr-2 disabled"> {{ page }} </div> #}
+            {#                        <a type="button" class="btn btn-dark" id="next" href="{{ path('serialpage',{'page':page+1} ) }}" #}
+            {#                           val="{{ page }}"> #}
+            {#                            {{ page+1 }} <i class="fa fa-angle-double-right" aria-hidden="true"></i> #}
+            {#                        </a> #}
+            {#                    {% endif %} #}
+            {#                {% endif %} #}
+            {#            </div> #}
         </div>
     </div>
     </div>
 
-    <div class="text-white text-center">© 2025 <a class="text-white" href="{{ path('homepage') }}"
-                                                  data-popup-processed="true">nayi-filmer.rf.gd</a></div>
+    <div class="bg-dark text-white text-center pt-4 pb-4">© 2025 <a class="text-white" href="{{ path('homepage') }}"
+                                                                    data-popup-processed="true">nayi-filmer.rf.gd</a>
+    </div>
 
 
 {% endblock %}
 
 {% block javascripts %}
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    {#    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js" #}
+    {#            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" #}
+    {#            crossorigin="anonymous"></script> #}
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
             integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"

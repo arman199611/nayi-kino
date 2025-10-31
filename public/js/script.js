@@ -1,27 +1,17 @@
-// let link = 'https://kp.kinobox.tv/films/popular?films=true&released=true&page=';
-// let link1 = 'https://kp.kinobox.tv/films/popular?series=true&released=true&page=';
+// let link = 'https://api.kinopoisk.dev/v1.4/movie?year=' + year + '&page=' + page + '&limit=100&type=movie';
+// let link1 = 'https://api.kinopoisk.dev/v1.4/movie?year=' + year + '&page=' + page + '&limit=100&type=tv-series';
 let page = $('#next').attr('val');
-let year = new Date().getFullYear();
-let link = 'https://api.kinopoisk.dev/v1.4/movie?year=' + year + '&page=' + page + '&limit=100&type=movie';
-let link1 = 'https://api.kinopoisk.dev/v1.4/movie?year=' + year + '&page=' + page + '&limit=100&type=tv-series';
 let linksearch = 'https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=100&query=';
 let watchfilm = 'https://iframe.cloud/iframe/';
 let ifo = 'https://api.kinopoisk.dev/v1.4/movie/';
 let altifo = 'https://api.imdbapi.dev/titles:batchGet?';
 let pathName = $('#pathName').attr('val');
 let finnd = [];
+let popfilm = $('#popfilms').data('settings');
 
 if (pathName == 'homepage' || pathName == 'page') {
-    const options = {
-        method: 'GET',
-        headers: {accept: 'application/json', 'X-API-KEY': '6M3VFC5-FR34F7A-QW7J0X6-R38720S'}
-    };
-    let popfilm = fetch(link, options)
-        .then(response => response.json());
-
-    popfilm.then(data => {
-        console.log(data);
-        let films = data.docs
+    $(document).ready(function () {
+        let films = popfilm;
         for (let i = 0; i < films.length; i++) {
             if (films[i].poster) {
                 let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].poster['url'] + "'><div class='card-body  bg-dark'>Фильм<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['name'] + "</h5></div></div></div>";
@@ -32,6 +22,7 @@ if (pathName == 'homepage' || pathName == 'page') {
                 $('.pages').addClass('d-none');
                 $('.player').removeClass('d-none');
                 $('#watchfilm').attr("src", "" + watchfilm + films[i]['id'] + '/');
+
                 const options = {
                     method: 'GET',
                     headers: {accept: 'application/json', 'X-API-KEY': '6M3VFC5-FR34F7A-QW7J0X6-R38720S'}
@@ -64,17 +55,12 @@ if (pathName == 'homepage' || pathName == 'page') {
         }
     });
 }
+;
 
 
 if (pathName == 'serials' || pathName == 'serialpage') {
-    const options = {
-        method: 'GET',
-        headers: {accept: 'application/json', 'X-API-KEY': '6M3VFC5-FR34F7A-QW7J0X6-R38720S'}
-    };
-    let popser = fetch(link1, options)
-        .then(response => response.json());
-    popser.then(data => {
-        let films = data.docs
+    $(document).ready(function () {
+        let films = popfilm;
         for (let i = 0; i < films.length; i++) {
             if (films[i].poster) {
                 let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].poster['url'] + "'><div class='card-body  bg-dark'>Сериал<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['name'] + "</h5></div></div></div>";
@@ -118,6 +104,14 @@ if (pathName == 'serials' || pathName == 'serialpage') {
         }
     });
 }
+;
+$('#word').on('keypress', function (e) {
+    if (e.key === 'Enter') {
+        let name = $('#word').val();
+        window.location.replace("https://nayi-filmer.rf.gd/ru/search/" + name);
+    }
+});
+
 if (pathName == 'search') {
     let searchword = encodeURIComponent($('#filmname').text());
     let link = linksearch + searchword;
@@ -221,8 +215,4 @@ if (pathName == 'search') {
         }
     });
 }
-$('#word').on('keypress', function (e) {
-    if (e.key === 'Enter') {
-        window.location.replace("https://stackoverflow.com");
-    }
-});
+;

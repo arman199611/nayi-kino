@@ -34,11 +34,14 @@ class DefaultController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
         $navs = $em->getRepository(Navbar::class)->findAll();
-        $page = 1;
-
+        $link = file_get_contents('https://www.dropbox.com/scl/fi/mlnigdvqfnv7ulvkytx5t/nayi-film.json?rlkey=ep5vazp73h4x8itxkw56ginw2&st=s6e5nlgc&dl=1');
+        $data = json_decode($link);
+        $filmes = json_encode($data->docs);
+        $filmes = json_decode($filmes, true);
         return $this->render('base.html.twig', [
             'navs' => $navs,
-            'page' => $page,
+            'filmes' => $filmes,
+            'page' => 0,
         ]);
 
     }
@@ -59,13 +62,9 @@ class DefaultController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
         $navs = $em->getRepository(Navbar::class)->findAll();
-//        $link = file_get_contents('https://kp.kinobox.tv/films/popular?films=true&released=true&page=' . $page);
-//        $data = json_decode($link);
-//        $films = $data->data->films;
 
         return $this->render('base.html.twig', [
             'navs' => $navs,
-//            'films' => $films,
             'page' => $page,
         ]);
 
@@ -87,10 +86,15 @@ class DefaultController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
         $navs = $em->getRepository(Navbar::class)->findAll();
-        $page = 1;
+        $link = file_get_contents('https://www.dropbox.com/scl/fi/4nsl3bee4ivisfighh81m/nayi-film-serials.json?rlkey=3h2oegpnhn0uy2pxneauk99gg&st=ksdjipw0&dl=1');
+        $data = json_decode($link);
+        $filmes = json_encode($data->docs);
+        $filmes = json_decode($filmes, true);
+
         return $this->render('base.html.twig', [
             'navs' => $navs,
-            'page' => $page,
+            'filmes' => $filmes,
+            'page' => 0,
         ]);
 
     }
@@ -111,13 +115,10 @@ class DefaultController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
         $navs = $em->getRepository(Navbar::class)->findAll();
-//        $link = file_get_contents('https://kp.kinobox.tv/films/popular?series=true&released=true&page=' . $page);
-//        $data = json_decode($link);
-//        $films = $data->data->films;
 
         return $this->render('base.html.twig', [
             'navs' => $navs,
-//            'films' => $films,
+
             'page' => $page,
         ]);
 
@@ -140,6 +141,7 @@ class DefaultController extends AbstractController
         return $this->render('base.html.twig', [
             'navs' => $navs,
             'film' => $film,
+            'page' => 0,
         ]);
 
     }
