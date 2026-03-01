@@ -112,7 +112,7 @@ $('#word').on('keypress', function (e) {
 });
 
 if (pathName == 'search') {
-    $('#word').text($('#filmname').text());
+    $('#word').val($('#filmname').text());
     let searchword = encodeURIComponent($('#filmname').text());
     let link = linksearch + searchword;
     $('.films').empty();
