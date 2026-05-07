@@ -33,7 +33,7 @@ class DefaultController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
         $navs = $em->getRepository(Navbar::class)->findAll();
-        $link = file_get_contents('https://www.dropbox.com/scl/fi/mlnigdvqfnv7ulvkytx5t/nayi-film.json?rlkey=ep5vazp73h4x8itxkw56ginw2&st=s6e5nlgc&dl=1');
+        $link = file_get_contents('https://www.dropbox.com/scl/fi/mlnigdvqfnv7ulvkytx5t/nayi-film.json?rlkey=ep5vazp73h4x8itxkw56ginw2&st=qzhkvki4&dl=1');
         $data = json_decode($link);
         $filmes = json_encode($data->docs);
         $filmes = json_decode($filmes, true);
@@ -85,7 +85,7 @@ class DefaultController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
         $navs = $em->getRepository(Navbar::class)->findAll();
-        $link = file_get_contents('https://www.dropbox.com/scl/fi/4nsl3bee4ivisfighh81m/nayi-film-serials.json?rlkey=3h2oegpnhn0uy2pxneauk99gg&st=ksdjipw0&dl=1');
+        $link = file_get_contents('https://www.dropbox.com/scl/fi/4nsl3bee4ivisfighh81m/nayi-film-serials.json?rlkey=3h2oegpnhn0uy2pxneauk99gg&st=4z0ym0uu&dl=1');
         $data = json_decode($link);
         $filmes = json_encode($data->docs);
         $filmes = json_decode($filmes, true);
