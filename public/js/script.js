@@ -1,0 +1,212 @@
+// let link = 'https://api.kinopoisk.dev/v1.4/movie?year=' + year + '&page=' + page + '&limit=100&type=movie';
+// let link1 = 'https://api.kinopoisk.dev/v1.4/movie?year=' + year + '&page=' + page + '&limit=100&type=tv-series';
+// let linksearch = 'https://api.poiskkino.dev/v1.4/movie/search?page=1&limit=100&query=';
+// let ifo = 'https://api.poiskkino.dev/v1.4/movie/';
+
+
+let page = $('#next').attr('val');
+let linksearch = 'https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=';
+let watchfilm = 'https://iframe.cloud/iframe/';
+let ifo = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/';
+let altifo = 'https://api.imdbapi.dev/titles:batchGet?';
+let pathName = $('#pathName').attr('val');
+let finnd = [];
+let popfilm = $('#popfilms').data('settings');
+
+if (pathName == 'homepage' || pathName == 'page') {
+    $(document).ready(function () {
+        let films = popfilm;
+        for (let i = 0; i < films.length; i++) {
+            if (films[i].poster) {
+                let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].poster['url'] + "'><div class='card-body  bg-dark'>Фильм<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['name'] + "</h5></div></div></div>";
+                $('.films').append(html);
+            }
+            $('#cn' + films[i]['id']).click(function () {
+                $('.films').addClass('d-none');
+                $('.pages').addClass('d-none');
+                $('#watchfilm').attr("src", "" + watchfilm + films[i]['id'] + '/');
+                const options = {
+                    method: 'GET', headers: {accept: 'application/json', 'X-API-KEY': '8a43b057-5543-4977-9b63-c5b888b6e06a'}
+                };
+                let filminfo = fetch(ifo + films[i]['id'], options)
+                    .then(res => res.json());
+                filminfo.then(data => {
+                    $('#poster').removeAttr("src");
+                    $('#name').empty();
+                    $('#year').empty();
+                    $('#countries').empty();
+                    $('#genres').empty();
+                    $('#desc').empty();
+                    $('#poster').attr("src", data.posterUrl);
+                    $('#name').append(data.nameRu);
+                    $('#year').append('Год:   ');
+                    $('#year').append(data.year + ' ,');
+                    $('#countries').append('Страна:  ');
+                    for (let i = 0; i < data.countries.length; i++) {
+                        $('#countries').append(data.countries[i].country + '  ,   ');
+                    }
+                    $('#genres').append('Жанр:    ');
+                    for (let i = 0; i < data.genres.length; i++) {
+                        $('#genres').append(data.genres[i].genre + '  ,   ');
+                    }
+                    $('#desc').append('Описание:<br>');
+                    $('#desc').append(data.description);
+                })
+            });
+        }
+    });
+}
+;
+
+
+if (pathName == 'serials' || pathName == 'serialpage') {
+    $(document).ready(function () {
+        let films = popfilm;
+        for (let i = 0; i < films.length; i++) {
+            if (films[i].poster) {
+                let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].poster['url'] + "'><div class='card-body  bg-dark'>Сериал<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['name'] + "</h5></div></div></div>";
+                $('.films').append(html);
+            }
+            $('#cn' + films[i]['id']).click(function () {
+                $('.films').addClass('d-none');
+                $('.pages').addClass('d-none');
+                $('#watchfilm').attr("src", "" + watchfilm + films[i]['id'] + '/');
+                const options = {
+                    method: 'GET', headers: {accept: 'application/json', 'X-API-KEY': '8a43b057-5543-4977-9b63-c5b888b6e06a'}
+                };
+                let filminfo = fetch(ifo + films[i]['id'], options)
+                    .then(res => res.json());
+                filminfo.then(data => {
+                    $('#poster').removeAttr("src");
+                    $('#name').empty();
+                    $('#year').empty();
+                    $('#countries').empty();
+                    $('#genres').empty();
+                    $('#desc').empty();
+                    $('#poster').attr("src", data.posterUrl);
+                    $('#name').append(data.nameRu);
+                    $('#year').append('Год:   ');
+                    $('#year').append(data.year + ' ,');
+                    $('#countries').append('Страна:  ');
+                    for (let i = 0; i < data.countries.length; i++) {
+                        $('#countries').append(data.countries[i].country + '  ,   ');
+                    }
+                    $('#genres').append('Жанр:    ');
+                    for (let i = 0; i < data.genres.length; i++) {
+                        $('#genres').append(data.genres[i].genre + '  ,   ');
+                    }
+                    $('#desc').append('Описание:<br>');
+                    $('#desc').append(data.description);
+                })
+            });
+        }
+    });
+}
+;
+$('#word').on('keypress', function (e) {
+    if (e.key === 'Enter') {
+        let href = "https://nayi-filmer.rf.gd/ru/search/" + $('#word').val();
+        window.location.replace(href);
+        window.location.href = href;
+    }
+});
+
+
+if (pathName == 'search') {
+    $('#word').val($('#filmname').text());
+    let searchword = encodeURIComponent($('#filmname').text());
+    let link = linksearch + searchword;
+    $('.films').empty();
+    $('.pages').empty();
+    $('.films').removeClass('d-none');
+    $('.player').addClass('d-none');
+    const options = {
+        // method: 'GET', headers: {accept: 'application/json', 'X-API-KEY': '6M3VFC5-FR34F7A-QW7J0X6-R38720S'}
+        method: 'GET', headers: {accept: 'application/json', 'X-API-KEY': '8a43b057-5543-4977-9b63-c5b888b6e06a'}
+    };
+    let search = fetch(link, options)
+        .then(response => response.json());
+    search.then(data => {
+        // let films = data.docs
+        let films = data.films
+        for (let i = 0; i < films.length; i++) {
+            if (films[i].posterUrl != "https://kinopoiskapiunofficial.tech/images/posters/kp/no-poster.png") {
+                if (films[i]['type'] == 'FILM') {
+                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card h-auto bg-dark' id='cn" + films[i]['filmId'] + "'><img class='card-img-top h-auto bg-dark' src='" + films[i].posterUrl + "'><div class='card-body  bg-dark'>Фильм<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['nameRu'] + "</h5></div></div></div>";
+                    $('.films').append(html);
+                } else if (films[i]['type'] == 'TV_SERIES') {
+                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card h-auto bg-dark' id='cn" + films[i]['filmId'] + "'><img class='card-img-top h-auto bg-dark' src='" + films[i].posterUrl + "'><div class='card-body  bg-dark'>Сериал<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['nameRu'] + "</h5></div></div></div>";
+                    $('.films').append(html);
+                } else {
+                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card h-auto bg-dark' id='cn" + films[i]['filmId'] + "'><img class='card-img-top h-auto bg-dark' src='" + films[i].posterUrl  + "'><div class='card-body  bg-dark'>Мультфильм<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['nameRu'] + "</h5></div></div></div>";
+                    $('.films').append(html);
+                }
+            } else {
+                if (films[i].externalId != null && films[i].externalId['imdb'] != null) {
+                    finnd.push("titleIds=" + films[i].externalId['imdb'] + "&");
+                    if (finnd.length == 5) {
+                        let newstr = '';
+                        for (let i = 0; i < finnd.length; i++) {
+                            let str = '' + finnd;
+                            newstr = str.replace(/,/g, "");
+                            newstr = newstr.slice(0, -1);
+                        }
+                        let altsearch = fetch(altifo + newstr)
+                            .then(response => response.json());
+                        altsearch.then(altdata => {
+                            let altfilms = altdata.titles;
+                            for (let i = 0; i < altfilms.length; i++) {
+                                if (films[i]['type'] == 'FILM') {
+                                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card h-auto bg-dark' id='cn" + films[i]['filmId'] + "'><img class='card-img-top h-auto bg-dark' src='" + altfilms[i].primaryImage['url'] + "'><div class='card-body  bg-dark'>Фильм<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['nameRu'] + "</h5></div></div></div>";
+                                    $('.films').append(html);
+                                } else if (films[i]['type'] == 'TV_SERIES') {
+                                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card h-auto bg-dark' id='cn" + films[i]['filmId'] + "'><img class='card-img-top h-auto bg-dark' src='" + altfilms[i].primaryImage['url'] + "'><div class='card-body  bg-dark'>Сериал<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['nameRu'] + "</h5></div></div></div>";
+                                    $('.films').append(html);
+                                } else {
+                                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card h-auto bg-dark' id='cn" + films[i]['filmId'] + "'><img class='card-img-top h-auto bg-dark' src='" + altfilms[i].primaryImage['url'] + "'><div class='card-body  bg-dark'>Мультфильм<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['nameRu'] + "</h5></div></div></div>";
+                                    $('.films').append(html);
+                                }
+                            }
+                        });
+                        finnd = [];
+                    }
+                }
+            }
+
+            $('#cn' + films[i]['filmId']).click(function () {
+                $('.films').addClass('d-none');
+                $('.pages').addClass('d-none');
+                $('#watchfilm').attr("src", "" + watchfilm + films[i]['filmId'] + '/');
+                const options = {
+                    method: 'GET', headers: {accept: 'application/json', 'X-API-KEY': '8a43b057-5543-4977-9b63-c5b888b6e06a'}
+                };
+                let filminfo = fetch(ifo + films[i]['filmId'], options)
+                    .then(res => res.json());
+                filminfo.then(data => {
+                    $('#poster').removeAttr("src");
+                    $('#name').empty();
+                    $('#year').empty();
+                    $('#countries').empty();
+                    $('#genres').empty();
+                    $('#desc').empty();
+                    $('#poster').attr("src", data.posterUrl);
+                    $('#name').append(data.nameRu);
+                    $('#year').append('Год:   ');
+                    $('#year').append(data.year + ' ,');
+                    $('#countries').append('Страна:  ');
+                    for (let i = 0; i < data.countries.length; i++) {
+                        $('#countries').append(data.countries[i].country + '  ,   ');
+                    }
+                    $('#genres').append('Жанр:    ');
+                    for (let i = 0; i < data.genres.length; i++) {
+                        $('#genres').append(data.genres[i].genre + '  ,   ');
+                    }
+                    $('#desc').append('Описание:<br>');
+                    $('#desc').append(data.description);
+                })
+                $('.player').removeClass('d-none');
+            });
+        }
+    });
+}
+;
