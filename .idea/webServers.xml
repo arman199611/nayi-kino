@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d7acd2d5-0a55-4181-882e-8bc78545c886" name="nayi-filmer.ct.ws" url="http://nayi-filmer.ct.ws">
+        <fileTransfer rootFolder="/htdocs" host="ftpupload.net" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
