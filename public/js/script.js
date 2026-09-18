@@ -16,9 +16,10 @@ let popfilm = $('#popfilms').data('settings');
 if (pathName == 'homepage' || pathName == 'page') {
     $(document).ready(function () {
         let films = popfilm;
+        console.log(films);
         for (let i = 0; i < films.length; i++) {
             if (films[i].poster) {
-                let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].poster['url'] + "'><div class='card-body  bg-dark'>Фильм<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['name'] + "</h5></div></div></div>";
+                let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].poster['url'] + "'><div class='card-body  bg-dark'>" + films[i]['name'] + "<h5 class='card-title  bg-dark'>Фильм <br>" + films[i]['year'] +"</h5></div></div></div>";
                 $('.films').append(html);
             }
             $('#cn' + films[i]['id']).click(function () {
@@ -64,9 +65,10 @@ if (pathName == 'homepage' || pathName == 'page') {
 if (pathName == 'serials' || pathName == 'serialpage') {
     $(document).ready(function () {
         let films = popfilm;
+        console.log(films);
         for (let i = 0; i < films.length; i++) {
             if (films[i].poster) {
-                let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].poster['url'] + "'><div class='card-body  bg-dark'>Сериал<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['name'] + "</h5></div></div></div>";
+                let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].poster['url'] + "'><div class='card-body  bg-dark'>" + films[i]['name'] + "<h5 class='card-title  bg-dark'>Сериал <br>" + films[i]['year'] +"</h5></div></div></div>";
                 $('.films').append(html);
             }
             $('#cn' + films[i]['id']).click(function () {
@@ -137,16 +139,17 @@ if (pathName == 'search') {
     search.then(data => {
         // let films = data.docs
         let films = data.films
+        console.log(films);
         for (let i = 0; i < films.length; i++) {
             if (films[i].posterUrl != "https://kinopoiskapiunofficial.tech/images/posters/kp/no-poster.png") {
                 if (films[i]['type'] == 'FILM') {
-                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card h-auto bg-dark' id='cn" + films[i]['filmId'] + "'><img class='card-img-top h-auto bg-dark' src='" + films[i].posterUrl + "'><div class='card-body  bg-dark'>Фильм<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['nameRu'] + "</h5></div></div></div>";
+                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].posterUrl + "'><div class='card-body  bg-dark'>" + films[i]['nameRu'] + "<h5 class='card-title  bg-dark'>Фильм <br>" + films[i]['year'] +"</h5></div></div></div>";
                     $('.films').append(html);
                 } else if (films[i]['type'] == 'TV_SERIES') {
-                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card h-auto bg-dark' id='cn" + films[i]['filmId'] + "'><img class='card-img-top h-auto bg-dark' src='" + films[i].posterUrl + "'><div class='card-body  bg-dark'>Сериал<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['nameRu'] + "</h5></div></div></div>";
+                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].posterUrl + "'><div class='card-body  bg-dark'>" + films[i]['nameRu'] + "<h5 class='card-title  bg-dark'>Сериал <br>" + films[i]['year'] +"</h5></div></div></div>";
                     $('.films').append(html);
                 } else {
-                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card h-auto bg-dark' id='cn" + films[i]['filmId'] + "'><img class='card-img-top h-auto bg-dark' src='" + films[i].posterUrl  + "'><div class='card-body  bg-dark'>Мультфильм<h5 class='card-title  bg-dark'>" + films[i]['year'] + "<br>" + films[i]['nameRu'] + "</h5></div></div></div>";
+                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].posterUrl + "'><div class='card-body  bg-dark'>" + films[i]['nameRu'] + "<h5 class='card-title  bg-dark'>Мультфильм <br>" + films[i]['year'] +"</h5></div></div></div>";
                     $('.films').append(html);
                 }
             } else {
