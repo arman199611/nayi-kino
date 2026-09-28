@@ -19,7 +19,7 @@ if (pathName == 'homepage' || pathName == 'page') {
         console.log(films);
         for (let i = 0; i < films.length; i++) {
             if (films[i].poster) {
-                let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].poster['url'] + "'><div class='card-body  bg-dark'>" + films[i]['name'] + "<h5 class='card-title  bg-dark'>Фильм <br>" + films[i]['year'] +"</h5></div></div></div>";
+                let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].poster['url'] + "'><div class='card-body  bg-dark'>" + films[i]['name'] + "<h5 class='card-title  bg-dark'>Фильм <br>" + films[i]['year'] + "</h5></div></div></div>";
                 $('.films').append(html);
             }
             $('#cn' + films[i]['id']).click(function () {
@@ -27,9 +27,12 @@ if (pathName == 'homepage' || pathName == 'page') {
                 $('.pages').addClass('d-none');
                 $('.player').removeClass('d-none');
                 $('#watchfilm').attr("src", "" + watchfilm + films[i]['id'] + '/');
-                const options = {method:
-                        'GET', headers: {accept: 'application/json',
-                        'X-API-KEY': '8a43b057-5543-4977-9b63-c5b888b6e06a'}
+                const options = {
+                    method:
+                        'GET', headers: {
+                        accept: 'application/json',
+                        'X-API-KEY': '8a43b057-5543-4977-9b63-c5b888b6e06a'
+                    }
                 };
                 let filminfo = fetch(ifo + films[i]['id'], options)
                     .then(res => res.json());
@@ -68,7 +71,7 @@ if (pathName == 'serials' || pathName == 'serialpage') {
         console.log(films);
         for (let i = 0; i < films.length; i++) {
             if (films[i].poster) {
-                let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].poster['url'] + "'><div class='card-body  bg-dark'>" + films[i]['name'] + "<h5 class='card-title  bg-dark'>Сериал <br>" + films[i]['year'] +"</h5></div></div></div>";
+                let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].poster['url'] + "'><div class='card-body  bg-dark'>" + films[i]['name'] + "<h5 class='card-title  bg-dark'>Сериал <br>" + films[i]['year'] + "</h5></div></div></div>";
                 $('.films').append(html);
             }
             $('#cn' + films[i]['id']).click(function () {
@@ -77,10 +80,12 @@ if (pathName == 'serials' || pathName == 'serialpage') {
                 $('.player').removeClass('d-none');
                 $('#watchfilm').attr("src", "" + watchfilm + films[i]['id'] + '/');
                 const options = {
-                    method: 'GET', headers: {accept:
+                    method: 'GET', headers: {
+                        accept:
                             'application/json',
-                            'X-API-KEY': '8a43b057-5543-4977-9b63-c5b888b6e06a'
-                    }};
+                        'X-API-KEY': '8a43b057-5543-4977-9b63-c5b888b6e06a'
+                    }
+                };
                 let filminfo = fetch(ifo + films[i]['id'], options)
                     .then(res => res.json());
                 filminfo.then(data => {
@@ -113,7 +118,7 @@ if (pathName == 'serials' || pathName == 'serialpage') {
 $('#word').on('keypress', function (e) {
     if (e.key === 'Enter') {
         var url = $('#word').attr('alt');
-        let href =  url.slice(0, -1) + $('#word').val() ;
+        let href = url.slice(0, -1) + $('#word').val();
         window.location.replace(href);
         window.location.href = href;
     }
@@ -130,26 +135,27 @@ if (pathName == 'search') {
     $('.player').addClass('d-none');
     const options = {
         // method: 'GET', headers: {accept: 'application/json', 'X-API-KEY': '6M3VFC5-FR34F7A-QW7J0X6-R38720S'}
-        method: 'GET', headers: {accept:
+        method: 'GET', headers: {
+            accept:
                 'application/json',
-                'X-API-KEY': '8a43b057-5543-4977-9b63-c5b888b6e06a'
-        }};
+            'X-API-KEY': '8a43b057-5543-4977-9b63-c5b888b6e06a'
+        }
+    };
     let search = fetch(link, options)
         .then(response => response.json());
     search.then(data => {
         // let films = data.docs
         let films = data.films
-        console.log(films);
         for (let i = 0; i < films.length; i++) {
             if (films[i].posterUrl != "https://kinopoiskapiunofficial.tech/images/posters/kp/no-poster.png") {
                 if (films[i]['type'] == 'FILM') {
-                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].posterUrl + "'><div class='card-body  bg-dark'>" + films[i]['nameRu'] + "<h5 class='card-title  bg-dark'>Фильм <br>" + films[i]['year'] +"</h5></div></div></div>";
+                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['filmId'] + "'><img class='card-img-top   bg-dark' src='" + films[i].posterUrl + "'><div class='card-body  bg-dark'>" + films[i]['nameRu'] + "<h5 class='card-title  bg-dark'>Фильм <br>" + films[i]['year'] + "</h5></div></div></div>";
                     $('.films').append(html);
                 } else if (films[i]['type'] == 'TV_SERIES') {
-                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].posterUrl + "'><div class='card-body  bg-dark'>" + films[i]['nameRu'] + "<h5 class='card-title  bg-dark'>Сериал <br>" + films[i]['year'] +"</h5></div></div></div>";
+                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['filmId'] + "'><img class='card-img-top   bg-dark' src='" + films[i].posterUrl + "'><div class='card-body  bg-dark'>" + films[i]['nameRu'] + "<h5 class='card-title  bg-dark'>Сериал <br>" + films[i]['year'] + "</h5></div></div></div>";
                     $('.films').append(html);
                 } else {
-                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['id'] + "'><img class='card-img-top   bg-dark' src='" + films[i].posterUrl + "'><div class='card-body  bg-dark'>" + films[i]['nameRu'] + "<h5 class='card-title  bg-dark'>Мультфильм <br>" + films[i]['year'] +"</h5></div></div></div>";
+                    let html = "<div class='col-md-2 col-5 all mb-4 d-block'><div class='card bg-dark' id='cn" + films[i]['filmId'] + "'><img class='card-img-top   bg-dark' src='" + films[i].posterUrl + "'><div class='card-body  bg-dark'>" + films[i]['nameRu'] + "<h5 class='card-title  bg-dark'>Мультфильм <br>" + films[i]['year'] + "</h5></div></div></div>";
                     $('.films').append(html);
                 }
             } else {
@@ -184,12 +190,15 @@ if (pathName == 'search') {
                 }
             }
 
+
             $('#cn' + films[i]['filmId']).click(function () {
                 $('.films').addClass('d-none');
                 $('.pages').addClass('d-none');
+                $('.player').removeClass('d-none');
                 $('#watchfilm').attr("src", "" + watchfilm + films[i]['filmId'] + '/');
                 const options = {
-                    method: 'GET', headers: {accept: 'application/json', 'X-API-KEY': '8a43b057-5543-4977-9b63-c5b888b6e06a'}
+                    method: 'GET',
+                    headers: {accept: 'application/json', 'X-API-KEY': '8a43b057-5543-4977-9b63-c5b888b6e06a'}
                 };
                 let filminfo = fetch(ifo + films[i]['filmId'], options)
                     .then(res => res.json());
