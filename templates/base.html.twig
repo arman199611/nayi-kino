@@ -28,13 +28,15 @@
 </head>
 <body>
 {% block body %}
-    <span id="pathName" val="{{ pathName }}"></span>
-    {% if pathName == 'homepage' or pathName == 'serials' %}
-        <span id="popfilms" data-settings="{{ filmes|json_encode }}"></span>
-    {% endif %}
-    {% if pathName == 'search' %}
-        <span id="filmname" class="d-none">{{ film }}</span>
-    {% endif %}
+    <div class="info">
+        <span id="pathName" val="{{ pathName }}"></span>
+        {% if pathName == 'homepage' or pathName == 'serials' %}
+            <span id="popfilms" data-settings="{{ filmes|json_encode }}"></span>
+        {% endif %}
+        {% if pathName == 'search' %}
+            <span id="filmname" class="d-none">{{ film }}</span>
+        {% endif %}
+    </div>
     {% for item in navs %}
         <div class="sticky-top mb-2">
             <nav class="navbar navbar-dark bg-dark">
@@ -47,7 +49,8 @@
                     </li>
                 </ul>
                 <form class="form-inline" onsubmit="return false;">
-                    <input class="form-control mr-2" type="search" placeholder="Поиск" id="word" alt="{{ path('search', {film: 1} ) }}">
+                    <input class="form-control mr-2" type="search" placeholder="Поиск" id="word"
+                           alt="{{ path('search', {film: 1} ) }}">
                 </form>
             </nav>
         </div>
@@ -102,8 +105,8 @@
                     <h5 id="desc"></h5>
                 </div>
                 <div class="col-12 fiilm-watch mt-4 mb-5 p-0">
-                    <iframe class="w-100" id="watchfilm" allowfullscreen="true" webkitallowfullscreen="true"
-                            mozallowfullscreen="true" style="height:100%; border: none;"></iframe>
+                    <iframe class="iframe w-100" id="watchfilm" allowfullscreen webkitallowfullscreen="true" mozallowfullscreen="true" scrolling="no" allow="fullscreen">
+                    </iframe>
                 </div>
                 {#                <div class="col-12 mt-4 p-0 kinobox_player"></div> #}
             </div>
@@ -150,7 +153,7 @@
     </div>
 
     <div class="bg-dark text-white text-center pt-4 pb-4">© 2025 <a class="text-white" href="{{ path('homepage') }}"
-                                                                    data-popup-processed="true">nayi-filmer.rf.gd</a>
+                                                                    data-popup-processed="true">nayi-filmer.ct.ws</a>
     </div>
 
 

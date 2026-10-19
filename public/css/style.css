@@ -1,5 +1,5 @@
 body {
-  background-color: #333333;
+  background-color: #0b0d14;
 }
 
 .navbar {
@@ -33,7 +33,7 @@ body {
   mia-height: 411px;
 }
 .card:hover {
-  background-color: #007fffd9 !important;
+  background-color: rgba(0, 127, 255, 0.8509803922) !important;
 }
 
 .col-md-2 {
@@ -62,14 +62,22 @@ body {
 }
 
 .fiilm-watch {
-  height: 600px;
+  height: 790px;
+  position: relative;
+  overflow: hidden;
+}
+
+.iframe {
+  height: stretch;
+  position: absolute;
+  top: -185px;
+  border: none;
 }
 
 @media only screen and (max-width: 500px) {
   .card-img-top {
     height: 60%;
   }
-
   .card {
     height: 100%;
   }
@@ -78,11 +86,9 @@ body {
   .card-img-top {
     height: 60%;
   }
-
   .card {
     height: 100%;
   }
-
   .fiilm-watch {
     height: 400px;
   }

@@ -2,11 +2,12 @@
 // let link1 = 'https://api.kinopoisk.dev/v1.4/movie?year=' + year + '&page=' + page + '&limit=100&type=tv-series';
 // let linksearch = 'https://api.poiskkino.dev/v1.4/movie/search?page=1&limit=100&query=';
 // let ifo = 'https://api.poiskkino.dev/v1.4/movie/';
+// let watchfilm = 'https://iframe.cloud/iframe/';
 
 
 let page = $('#next').attr('val');
 let linksearch = 'https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=';
-let watchfilm = 'https://iframe.cloud/iframe/';
+let watchfilm = 'https://habster.sbs/series/';
 let ifo = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/';
 let altifo = 'https://api.imdbapi.dev/titles:batchGet?';
 let pathName = $('#pathName').attr('val');
@@ -26,7 +27,8 @@ if (pathName == 'homepage' || pathName == 'page') {
                 $('.films').addClass('d-none');
                 $('.pages').addClass('d-none');
                 $('.player').removeClass('d-none');
-                $('#watchfilm').attr("src", "" + watchfilm + films[i]['id'] + '/');
+                let iframe = $('#watchfilm');
+                iframe.attr("src", "" + watchfilm + films[i]['id'] + '/');
                 const options = {
                     method:
                         'GET', headers: {
@@ -78,7 +80,8 @@ if (pathName == 'serials' || pathName == 'serialpage') {
                 $('.films').addClass('d-none');
                 $('.pages').addClass('d-none');
                 $('.player').removeClass('d-none');
-                $('#watchfilm').attr("src", "" + watchfilm + films[i]['id'] + '/');
+                let iframe = $('#watchfilm');
+                iframe.attr("src", "" + watchfilm + films[i]['id'] + '/');
                 const options = {
                     method: 'GET', headers: {
                         accept:
@@ -146,6 +149,7 @@ if (pathName == 'search') {
     search.then(data => {
         // let films = data.docs
         let films = data.films
+        console.log(films);
         for (let i = 0; i < films.length; i++) {
             if (films[i].posterUrl != "https://kinopoiskapiunofficial.tech/images/posters/kp/no-poster.png") {
                 if (films[i]['type'] == 'FILM') {
@@ -195,7 +199,8 @@ if (pathName == 'search') {
                 $('.films').addClass('d-none');
                 $('.pages').addClass('d-none');
                 $('.player').removeClass('d-none');
-                $('#watchfilm').attr("src", "" + watchfilm + films[i]['filmId'] + '/');
+                let iframe = $('#watchfilm');
+                iframe.attr("src", "" + watchfilm + films[i]['filmId'] + '/');
                 const options = {
                     method: 'GET',
                     headers: {accept: 'application/json', 'X-API-KEY': '8a43b057-5543-4977-9b63-c5b888b6e06a'}
